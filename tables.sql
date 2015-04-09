@@ -3,13 +3,14 @@
 CREATE TABLE rater
 (
   userID INTEGER NOT NULL,
-  email VARCHAR(20),
+  email VARCHAR(30),
   name VARCHAR(20),
   join_date DATE,
   type VARCHAR(20),
   reputation INTEGER DEFAULT 1,
   CONSTRAINT rater_pkey PRIMARY KEY (userID),
-  CONSTRAINT rater_reputation CHECK (reputation >= 1 AND reputation <= 5)
+  CONSTRAINT rater_reputation CHECK (reputation >= 1 AND reputation <= 5),
+  CONSTRAINT rater_type CHECK (type IN ('blog', 'online', 'critic'))
 );
 
 CREATE TABLE rating
@@ -59,10 +60,10 @@ CREATE TABLE rating
  CREATE TABLE menuItem
  (
    itemID INTEGER not null,
-   name VARCHAR(20),
+   name VARCHAR(50),
    type VARCHAR(8),
-   category VARCHAR(6),
-   description VARCHAR(20),
+   category VARCHAR(7),
+   description TEXT,
    price DECIMAL,
    restaurantID INTEGER,
    CONSTRAINT menuItem_category CHECK (category IN ('starter', 'main', 'desert')),
