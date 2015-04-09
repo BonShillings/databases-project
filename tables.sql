@@ -20,8 +20,7 @@ CREATE TABLE rating
   food INTEGER,
   mood INTEGER,
   staff INTEGER,
-  comments VARCHAR(20),
-  /* not sure if comments is implemented propery */
+  comments TEXT,
   CONSTRAINT rating_userID_fkey FOREIGN KEY (userID)
 	REFERENCES rater(userID)
 	ON UPDATE CASCADE ON DELETE CASCADE,
@@ -36,7 +35,7 @@ CREATE TABLE rating
  (
    restaurantID INTEGER NOT null,
    name VARCHAR(20),
-   type VARCHAR(20),
+   type VARCHAR(30),
    URL VARCHAR(512),
    CONSTRAINT restaurant_pkey PRIMARY KEY (restaurantID)
  );
@@ -80,7 +79,7 @@ CREATE TABLE ratingItem
   date DATE,
   itemID INTEGER,
   rating INTEGER, 
-  comment VARCHAR(20),
+  comment TEXT,
   CONSTRAINT ratingItem_pkey PRIMARY KEY (userID, date, itemID),
   CONSTRAINT ratingItem_userID_fkey FOREIGN KEY (userID)
 	REFERENCES rater(userID)
