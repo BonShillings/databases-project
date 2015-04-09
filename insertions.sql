@@ -31,28 +31,44 @@ INSERT INTO rater VALUES (13, 'dparmar4@email.com', 'dparmar4', '2015-01-19', 'o
 INSERT INTO rater VALUES (14, 'aacha005@email.com', 'aacha005', '2013-10-24', 'online', '2');
 INSERT INTO rater VALUES (15, 'Laura_d@email.com', 'Laura_d', '2015-02-13', 'blog', '3');
 
-
---menuItem insertions
---what are beverages counted as?
---havent tested adding
+--menu item insertions
 INSERT INTO menuItem VALUES (1, 'Caesar Selections', 'food', 'starter', 'Crisp romaine tossed with our homemade Caesar dressing, croutons, and shredded parmesan cheese.', 4.95, 1);
-INSERT INTO menuItem VALUES (2, 'Chicken Salitmbocca', 'food', 'main', 'Boneless breast of chicken sautéed with fresh sage and proscuitto. Finished in the oven with mozzarella and served atop creamy asagio linguini.', 19.95, 1);
-INSERT INTO menuItem VALUES (3, 'Macabeo', 'beverage', 'wine', 'A blend of ripe, rounded Chardonnay with crisp, appley Macabeo delivers a delicious tangy finish.' 5.30, 1);
+INSERT INTO menuItem VALUES (2, 'Chicken Salitmbocca', 'food', 'main', 'Boneless breast of chicken sauteed with fresh sage and proscuitto. Finished in the oven with mozzarella and served atop creamy asagio linguini.', 19.95, 1);
+INSERT INTO menuItem VALUES (3, 'Macabeo', 'beverage', 'starter', 'A blend of ripe, rounded Chardonnay with crisp, appley Macabeo delivers a delicious tangy finish.', 5.30, 1);
 INSERT INTO menuItem VALUES (4, 'Ban-offee Pie', 'food', 'desert', 'Shortbread and pecan crust layered with caramel and bananas topped with whipped cream.', 5.75, 1);
-INSERT INTO menuItem VALUES (5, 'Chicken Scampi Roja', 'food', 'main', 'Boneless breast of chicken sautéed in a scampi sauce with sundried tomatoes, artichoke hearts, and spinach. Tossed with linguini and finished with roasted red pepper pesto and the chef’s choice of ravioli.', 19.95, 2);
-INSERT INTO menuItem VALUES (6, 'Traditional Chicken Scampi', 'food', 'main', 'Boneless breast of chicken sautéed with mushrooms and tons of fresh garlic. Finished with white wine, sweet cream butter, and linguini.', 17.95, 2);
-INSERT INTO menuItem VALUES (7, 'Black Bean Soup', 'food', 'starter' 'Pureed black bean, jalapeno and vegetable soup', 5.95, 2);
-INSERT INTO menuItem VALUES (8, 'Strawberry-Coconut Pie' 'food', 'desert', 'Coconut cream filling topped with fresh glazed strawberries and vanilla lime sauce.' 6.5, 2);
-INSERT INTO menuItem VALUES (9, 'Emeril Chicken', 'food', 'main', 'Boneless breast of chicken sautéed with mushrooms, spinach, artichoke hearts, fire roasted peppers, and sundried tomatoes. Finished with a chipotle-chevre sauce.', 18.95, 3);
+INSERT INTO menuItem VALUES (5, 'Chicken Scampi Roja', 'food', 'main', 'Boneless breast of chicken sauteed in a scampi sauce with sundried tomatoes, artichoke hearts, and spinach. Tossed with linguini and finished with roasted red pepper pesto and the chefs choice of ravioli.', 19.95, 2);
+INSERT INTO menuItem VALUES (6, 'Traditional Chicken Scampi', 'food', 'main', 'Boneless breast of chicken sauteed with mushrooms and tons of fresh garlic. Finished with white starter, sweet cream butter, and linguini.', 17.95, 2);
+INSERT INTO menuItem VALUES (7, 'Black Bean Soup', 'food', 'starter', 'Pureed black bean, jalapeno and vegetable soup', 5.95, 2);
+INSERT INTO menuItem VALUES (8, 'Strawberry-Coconut Pie', 'food', 'desert', 'Coconut cream filling topped with fresh glazed strawberries and vanilla lime sauce.', 6.5, 2);
+INSERT INTO menuItem VALUES (9, 'Emeril Chicken', 'food', 'main', 'Boneless breast of chicken sauteed with mushrooms, spinach, artichoke hearts, fire roasted peppers, and sundried tomatoes. Finished with a chipotle-chevre sauce.', 18.95, 3);
 INSERT INTO menuItem VALUES (10, 'Broccoli and Cheese Soup', 'food', 'starter', 'A hearty brocoli and cheese soup for those cold winter days.', 5.95, 3);
 INSERT INTO menuItem VALUES (11, 'Dark Chocolate and Peanut Butter Stack', 'food', 'desert', 'Food cake with peanut butter mousse served with peanut butter ice cream', 6.5, 3);
-INSERT INTO menuItem VALUES (12, 'Chenin Blanc', 'beverage', 'wine', 'A crisp, light nose of green peppers and citrus fruits leads to a palate of tropical notes and a balanced finish of pear and grapefruit', 10.9, 3);
-INSERT INTO menuItem VALUES (13, 'Seafood Saute', 'food', 'main', 'Fresh haddock, sea scallops, gulf shrimp, and the chef’s choice of ravioli tossed in your choice of sauce.', 22.95, 4);
+INSERT INTO menuItem VALUES (12, 'Chenin Blanc', 'beverage', 'starter', 'A crisp, light nose of green peppers and citrus fruits leads to a palate of tropical notes and a balanced finish of pear and grapefruit', 10.9, 3);
+INSERT INTO menuItem VALUES (13, 'Seafood Saute', 'food', 'main', 'Fresh haddock, sea scallops, gulf shrimp, and the chefs choice of ravioli tossed in your choice of sauce.', 22.95, 4);
 INSERT INTO menuItem VALUES (14, 'Minestrone Soup', 'food', 'starter', 'Traditional Italian Vegetable Soup that includes; Green Beans, Zucchini, Tomatoes, Carrots, Spinach, Kidney and Cannellini Beans and Pasta', 6.45, 4);
 INSERT INTO menuItem VALUES (15, 'Strawberry Layer Cake', 'food', 'desert', 'White chocolate cream cheese frosting served with vanilla ice cream', 7, 4);
-INSERT INTO menuItem VALUES (16, 'Shrimp Scampi Roja', 'food', 'main', ' Fresh gulf shrimp sautéed in a scampi sauce with sundried tomatoes, artichoke hearts, and spinach. Tossed with linguini and finished with roasted red pepper pesto and the chef’s choice of ravioli.', 19.95, 5);
-INSERT INTO menuItem VALUES (17, 'Milk Chocolate Cream Pie', 'food', 'desert', 'Rich milk shocolate pudding on a dark chocolate cookie crust served with vanilla whipped cream.', 6, 5);
-INSERT INTO menuItem VALUES (18, 'Sauvignon Blanc', 'beverage', 'wine', 'A wine that perfectly demonstrates that quality wine can be found outside of the more traditional producing areas. Fresh and fruity this is a fantastic easy drinker.', 11.3, 5);
-INSERT INTO menuItem VALUES (19, 'Gaganega', 'beverage', 'wine', 'A delicious, mouthwatering blend of two of Italy’s finest varieties is delicate, citrusy and dry with a tangy finish', 11.7, 6);
-INSERT INTO menuItem VALUES (20, 'Split Pea Soup', 'A Hearty Split Pea Soup Simmered with Carrots and Red Potatoes', 4.95, 6);
-INSERT INTO menuItem VALUES (21, 'Corn Chowder', 'A Great Cream Soup on a Cold Day with Bacon, Potato and Lots of Corn', 5.95, 7);
+INSERT INTO menuItem VALUES (16, 'Shrimp Scampi Roja', 'food', 'main', ' Fresh gulf shrimp sauteed in a scampi sauce with sundried tomatoes, artichoke hearts, and spinach. Tossed with linguini and finished with roasted red pepper pesto and the chefs choice of ravioli.', 19.95, 5);
+INSERT INTO menuItem VALUES (17, 'Milk Chocolate Cream Pie', 'food', 'desert', 'Rich milk chocolate pudding on a dark chocolate cookie crust served with vanilla whipped cream.', 6, 5);
+INSERT INTO menuItem VALUES (18, 'Sauvignon Blanc', 'beverage', 'starter', 'A starter that perfectly demonstrates that quality starter can be found outside of the more traditional producing areas. Fresh and fruity this is a fantastic easy drinker.', 11.3, 5);
+INSERT INTO menuItem VALUES (19, 'Gaganega', 'beverage', 'starter', 'A delicious, mouthwatering blend of two of Italys finest varieties is delicate, citrusy and dry with a tangy finish', 11.7, 6);
+INSERT INTO menuItem VALUES (20, 'Split Pea Soup', 'food', 'starter', 'A Hearty Split Pea Soup Simmered with Carrots and Red Potatoes', 4.95, 6);
+INSERT INTO menuItem VALUES (21, 'Corn Chowder', 'food', 'starter', 'A Great Cream Soup on a Cold Day with Bacon, Potato and Lots of Corn', 5.95, 7);
+INSERT INTO menuItem VALUES (22, 'Baked Stuffed Seafood Selection', 'food', 'main', 'Your choice served on our homemade crabmeat stuffing.', 18.95, 7);
+INSERT INTO menuItem VALUES (23, 'Bartlett Pear Crisp', 'food', 'desert', 'With oat, coconut and almond topping, served warm with homemade buttermilk caramel ice cream.', 6.5, 7);
+INSERT INTO menuItem VALUES (24, 'Chablis', 'beverage', 'starter', 'Mouth-watering minerality and wonderfully pure appley fruit, this electrifies the palate and has considerable richness for Chablis - a stunner! ', 11.5, 8);
+INSERT INTO menuItem VALUES (25, 'Rioja Blanco', 'beverage', 'starter', 'Fresh, zesty and full of minerality. An elegant bouquet of citrus & apple & a palate of great structure & balance make way to a long refreshing finish.', 8.75, 8);
+INSERT INTO menuItem VALUES (26, 'Veal Parmigiana', 'food', 'main', 'Sauteed cutlet of Wisconsin milk fed veal, baked with Italian plum tomato sauce and mozzarella cheese', 14.95, 8);
+INSERT INTO menuItem VALUES (27, 'Clam Chowder', 'food', 'starter', 'A thick New England favorite!', 6.95, 8);
+INSERT INTO menuItem VALUES (28, 'Turkey Soup', 'food', 'starter', 'Turkey and lightly seasoned stock with carrots, onions, celery, corn, peas and zucchini', 5.45, 9);
+INSERT INTO menuItem VALUES (29, 'Red Velvet Layer Cake', 'food', 'desert', 'With cream cheese frosting served with vanilla ice cream', 6.5, 9);
+INSERT INTO menuItem VALUES (30, 'Creole Pecan Pie', 'food', 'desert', 'With whipped cream', 6.5, 9);
+INSERT INTO menuItem VALUES (31, 'Royal Wings', 'food', 'starter', 'Buttermilk battered in our signature seasoning blend. Enjoy a pound of our crispy wings tossed in your favourite sauce: Mild, Medium, Hot, Extreme, Cajun dusted, Sriracha, Thai or Honey Garlic.', 7.45, 9);
+INSERT INTO menuItem VALUES (32, 'Soup of the Day', 'food', 'starter', 'Prepared fresh from our kitchen. Bowl or cup.', 7.95, 10);
+INSERT INTO menuItem VALUES (33, 'Pita Plate', 'food', 'starter', 'A plate of hummus and Tzatziki served with fresh cut vegetables, Kalamata olives and grilled pita. Individual or sharing.', 8.45, 10);
+INSERT INTO menuItem VALUES (34, 'Grilled Vegetable and Goat Cheese Wrap', 'food', 'main', 'A plate of hummus and Tzatziki served with fresh cut vegetables, Kalamata olives and grilled pita. Individual or sharing.', 14.45, 10);
+INSERT INTO menuItem VALUES (35, 'Lamb Burger', 'food', 'main', 'A tasty grilled New Zealand lamb, handcrafted burger lightly seasoned with rosemary and garlic, served with caramelized red onions and fresh cucumber Tzatziki.', 13.95, 11);
+INSERT INTO menuItem VALUES (36, 'Shepherds Pie', 'food', 'main', 'A traditional English favourite with a twist! Homemade Shepherds Pie topped with your choice of red potato or sweet potato mash and covered in gravy. Served with salad.', 13.95, 11);
+INSERT INTO menuItem VALUES (37, 'Flat Iron Steak', 'food', 'main', 'Known for its tenderness, this 8 oz. steak is grilled to perfection and topped with sauteed mushrooms, onions and green peppers. Served with choice of any two: rice or potato or seasonal vegetables.', 17.95, 12);
+INSERT INTO menuItem VALUES (38, 'Grey Goose Cape Coddler', 'beverage', 'starter', 'A refreshing classic with vodka and a splash of cranberry', 9.49, 12);
+INSERT INTO menuItem VALUES (39, 'Mudslide', 'beverage', 'starter', 'A creamy, frosty blend of Kahlua, Baileys Irish Cream and vodka, served in a glass swirled with chocolate and topped with whipped cream', 8.29, 12);
+INSERT INTO menuItem VALUES (40, 'Pumpkin Soup', 'food', 'starter', 'A Creamy and Velvety Soup with Nutmeg and Bacon', 6.95, 12);
