@@ -34,6 +34,7 @@ INSERT INTO rater VALUES (15, 'Laura_d@email.com', 'Laura_d', '2015-02-13', 'blo
 
 --menuItem insertions
 --what are beverages counted as?
+--havent tested adding
 INSERT INTO menuItem VALUES (1, 'Caesar Selections', 'food', 'starter', 'Crisp romaine tossed with our homemade Caesar dressing, croutons, and shredded parmesan cheese.', 4.95, 1);
 INSERT INTO menuItem VALUES (2, 'Chicken Salitmbocca', 'food', 'main', 'Boneless breast of chicken sautéed with fresh sage and proscuitto. Finished in the oven with mozzarella and served atop creamy asagio linguini.', 19.95, 1);
 INSERT INTO menuItem VALUES (3, 'Macabeo', 'beverage', 'wine', 'A blend of ripe, rounded Chardonnay with crisp, appley Macabeo delivers a delicious tangy finish.' 5.30, 1);
