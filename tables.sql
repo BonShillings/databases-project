@@ -44,12 +44,12 @@ CREATE TABLE rating
  CREATE TABLE location
  (
    locationID INTEGER not null,
-   first-open-date DATE,
-   manager-name VARCHAR(20),
-   phone-number VARCHAR(15),
-   street-address CHAR(15),
-   hour-open VARCHAR(4),
-   hour-close VARCHAR(4),
+   first_open_date DATE,
+   manager_name VARCHAR(20),
+   phone_number VARCHAR(15),
+   street_address CHAR(15),
+   hour_open VARCHAR(4),
+   hour_close VARCHAR(4),
    restaurantID INTEGER,
    CONSTRAINT location_restaurantID_fkey FOREIGN KEY (restaurantID)
 	REFERENCES restaurant(restaurantID)
@@ -68,20 +68,20 @@ CREATE TABLE rating
    restaurantID INTEGER,
    CONSTRAINT menuItem_category CHECK (category IN ('starter', 'main', 'desert')),
    CONSTRAINT menuItem_type CHECK (type IN ('food', 'beverage')),
-   CONSTRAINT menuItem_pkey PRIMARY KEY (menuItem),
+   CONSTRAINT menuItem_pkey PRIMARY KEY (itemID),
    CONSTRAINT menuItem_restaurantID_fkey FOREIGN KEY (restaurantID)
 	REFERENCES restaurant(restaurantID)
 	ON UPDATE CASCADE ON DELETE CASCADE
  );
-
+ 
 CREATE TABLE ratingItem
 (
   userID INTEGER,
-  Date DATE,
-  itemID INTEGER
+  date DATE,
+  itemID INTEGER,
   rating INTEGER, 
   comment VARCHAR(20),
-  CONSTRAINT ratingItem PRIMARY KEY (userID, date, itemID),
+  CONSTRAINT ratingItem_pkey PRIMARY KEY (userID, date, itemID),
   CONSTRAINT ratingItem_userID_fkey FOREIGN KEY (userID)
 	REFERENCES rater(userID)
 	ON UPDATE CASCADE ON DELETE CASCADE,
@@ -89,4 +89,4 @@ CREATE TABLE ratingItem
 	REFERENCES menuItem(itemID)
 	ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT ratingItem_rating CHECK (rating >= 1 AND rating <= 5)
-)
+);
