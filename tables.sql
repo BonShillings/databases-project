@@ -22,8 +22,12 @@ CREATE TABLE rating
   mood INTEGER,
   staff INTEGER,
   comments TEXT,
+  restaurantID INTEGER NOT NULL,
   CONSTRAINT rating_userID_fkey FOREIGN KEY (userID)
 	REFERENCES rater(userID)
+	ON UPDATE CASCADE ON DELETE CASCADE,
+  CONSTRAINT rating_restaurantID_fkey FOREIGN KEY (restaurantID)
+	REFERENCES restaurant(restaurantID)
 	ON UPDATE CASCADE ON DELETE CASCADE,
   CONSTRAINT rating_pkey PRIMARY KEY (userID, date),
   CONSTRAINT rating_price CHECK (price >= 1 AND price <= 5),
@@ -43,14 +47,14 @@ CREATE TABLE rating
 
  CREATE TABLE location
  (
-   locationID INTEGER not null,
+   locationID INTEGER NOT NULL,
    first_open_date DATE,
    manager_name VARCHAR(20),
    phone_number VARCHAR(15),
-   street_address CHAR(15),
+   street_address CHAR(95),
    hour_open VARCHAR(4),
    hour_close VARCHAR(4),
-   restaurantID INTEGER,
+   restaurantID INTEGER NOT NULL,
    CONSTRAINT location_restaurantID_fkey FOREIGN KEY (restaurantID)
 	REFERENCES restaurant(restaurantID)
 	ON UPDATE CASCADE ON DELETE CASCADE,
@@ -59,13 +63,13 @@ CREATE TABLE rating
 
  CREATE TABLE menuItem
  (
-   itemID INTEGER not null,
+   itemID INTEGER NOT NULL,
    name VARCHAR(50),
    type VARCHAR(8),
    category VARCHAR(7),
    description TEXT,
    price DECIMAL,
-   restaurantID INTEGER,
+   restaurantID INTEGER NOT NULL,
    CONSTRAINT menuItem_category CHECK (category IN ('starter', 'main', 'desert')),
    CONSTRAINT menuItem_type CHECK (type IN ('food', 'beverage')),
    CONSTRAINT menuItem_pkey PRIMARY KEY (itemID),
