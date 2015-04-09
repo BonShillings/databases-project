@@ -50,3 +50,9 @@ INSERT INTO menuItem VALUES (12, 'Chenin Blanc', 'beverage', 'wine', 'A crisp, l
 INSERT INTO menuItem VALUES (13, 'Seafood Saute', 'food', 'main', 'Fresh haddock, sea scallops, gulf shrimp, and the chef’s choice of ravioli tossed in your choice of sauce.', 22.95, 4);
 INSERT INTO menuItem VALUES (14, 'Minestrone Soup', 'food', 'starter', 'Traditional Italian Vegetable Soup that includes; Green Beans, Zucchini, Tomatoes, Carrots, Spinach, Kidney and Cannellini Beans and Pasta', 6.45, 4);
 INSERT INTO menuItem VALUES (15, 'Strawberry Layer Cake', 'food', 'desert', 'White chocolate cream cheese frosting served with vanilla ice cream', 7, 4);
+INSERT INTO menuItem VALUES (16, 'Shrimp Scampi Roja', 'food', 'main', ' Fresh gulf shrimp sautéed in a scampi sauce with sundried tomatoes, artichoke hearts, and spinach. Tossed with linguini and finished with roasted red pepper pesto and the chef’s choice of ravioli.', 19.95, 5);
+INSERT INTO menuItem VALUES (17, 'Milk Chocolate Cream Pie', 'food', 'desert', 'Rich milk shocolate pudding on a dark chocolate cookie crust served with vanilla whipped cream.', 6, 5);
+INSERT INTO menuItem VALUES (18, 'Sauvignon Blanc', 'beverage', 'wine', 'A wine that perfectly demonstrates that quality wine can be found outside of the more traditional producing areas. Fresh and fruity this is a fantastic easy drinker.', 11.3, 5);
+INSERT INTO menuItem VALUES (19, 'Gaganega', 'beverage', 'wine', 'A delicious, mouthwatering blend of two of Italy’s finest varieties is delicate, citrusy and dry with a tangy finish', 11.7, 6);
+INSERT INTO menuItem VALUES (20, 'Split Pea Soup', 'A Hearty Split Pea Soup Simmered with Carrots and Red Potatoes', 4.95, 6);
+INSERT INTO menuItem VALUES (21, 'Corn Chowder', 'A Great Cream Soup on a Cold Day with Bacon, Potato and Lots of Corn', 5.95, 7);
