@@ -37,27 +37,31 @@
 </nav>
 <br> <br>
 
-<h1>Listing Restaurants</h1>
+<h1>Listing Raters</h1>
 
 <table>
   <thead>
     <tr>
+      <th>Email</th>
       <th>Name</th>
+      <th>Join date</th>
       <th>Rtype</th>
-      <th>Url</th>
+      <th>Reputation</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @restaurants.each do |restaurant| %>
+    <% @raters.each do |rater| %>
       <tr>
-        <td><%= restaurant.name %></td>
-        <td><%= restaurant.rtype %></td>
-        <td><%= restaurant.url %></td>
-        <td><%= link_to 'Show', restaurant %></td>
-        <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-        <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= rater.email %></td>
+        <td><%= rater.name %></td>
+        <td><%= rater.join_date %></td>
+        <td><%= rater.rtype %></td>
+        <td><%= rater.reputation %></td>
+        <td><%= link_to 'Show', rater %></td>
+        <td><%= link_to 'Edit', edit_rater_path(rater) %></td>
+        <td><%= link_to 'Destroy', rater, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -65,4 +69,4 @@
 
 <br>
 
-<%= link_to 'New Restaurant', new_restaurant_path %>
+<%= link_to 'New Rater', new_rater_path %>

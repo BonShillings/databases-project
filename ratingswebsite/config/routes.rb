@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :menuitems
+  resources :raters
   resources :restaurants
   resources :restaurants
   get 'login/homepage'

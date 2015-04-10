@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  mtype: MyString
+  mcategory: MyString
+  description: MyText
+  price: 9.99
+  restaurantID: 1
+
+two:
+  name: MyString
+  mtype: MyString
+  mcategory: MyString
+  description: MyText
+  price: 9.99
+  restaurantID: 1

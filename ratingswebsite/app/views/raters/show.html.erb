@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @rater.email %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @rater.name %>
+</p>
+
+<p>
+  <strong>Join date:</strong>
+  <%= @rater.join_date %>
+</p>
+
+<p>
+  <strong>Rtype:</strong>
+  <%= @rater.rtype %>
+</p>
+
+<p>
+  <strong>Reputation:</strong>
+  <%= @rater.reputation %>
+</p>
+
+<%= link_to 'Edit', edit_rater_path(@rater) %> |
+<%= link_to 'Back', raters_path %>
