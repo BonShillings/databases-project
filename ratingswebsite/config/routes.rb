@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :restaurants
+  resources :restaurants
   get 'login/homepage'
 
   # The priority is based upon order of creation: first created -> highest priority.
