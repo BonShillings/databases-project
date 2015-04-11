@@ -52,8 +52,8 @@ CREATE TABLE rating
    manager_name VARCHAR(20),
    phone_number VARCHAR(15),
    street_address CHAR(95),
-   hour_open VARCHAR(4),
-   hour_close VARCHAR(4),
+   hour_open VARCHAR(5),
+   hour_close VARCHAR(5),
    restaurantID INTEGER NOT NULL,
    CONSTRAINT location_restaurantID_fkey FOREIGN KEY (restaurantID)
 	REFERENCES restaurant(restaurantID)
