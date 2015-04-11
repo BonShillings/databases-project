@@ -77,21 +77,20 @@ INSERT INTO menuItem VALUES (39, 'Mudslide', 'beverage', 'starter', 'A creamy, f
 INSERT INTO menuItem VALUES (40, 'Pumpkin Soup', 'food', 'starter', 'A Creamy and Velvety Soup with Nutmeg and Bacon', 6.95, 12);
 
 --location insertions
---have not tried inserting
 INSERT INTO location VALUES (1, '2015-01-01', 'Evariste Galois', '613-232-6289', '226 Neapean Street', '11:00', '02:00', 1);
 INSERT INTO location VALUES (2, '2014-01-01', 'Alan Turing', '613-563-2862', '425 Bank Street', '11:30', '02:00', 1);
 INSERT INTO location VALUES (3, '2013-12-31', 'Bernhard Riemann', '613-680-8803', '155 Bank Street', '11:00', '02:00',  2);
-INSERT INTO location VALUES (4, '2014-11-31', 'Alex Grothendieck', '613-265-4501', '123 Fake Street', '10:00', '12:00', 3);
+INSERT INTO location VALUES (4, '2014-11-30', 'Alex Grothendieck', '613-265-4501', '123 Fake Street', '10:00', '12:00', 3);
 INSERT INTO location VALUES (5, '2014-04-20', 'Saunders Mac Lane', '613-264-2718', '123 Sesame Street', '11:00', '01:00', 4);
 INSERT INTO location VALUES (6, '2014-02-14', 'Terry Tao', '613-400-6087', '42 Evergreen Terraace', '12:00', '23:00', 5);
 INSERT INTO location VALUES (7, '2014-11-24', 'John Nash', '613-123-4567', '420 Fake Street', '13:00', '01:00', 6);
-INSERT INTO location VALUES (8, '2014-04-01', 'Bertrand Russel', '613-987-6543', '50 Rideau Street', '12:00, 02:00', 7);
-INSERT INTO location VALUES (9, '2015-04-13', 'Pierre Fermat', '613-235-7110', '1 Wellington Street', '10:00, 21:00', 8);
-INSERT INTO location VALUES (10, '2014-04-20', 'Louis Lagrange', '613-416-4169', '525 King Edward Avenue', '09:00, 00:00', 9);
-INSERT INTO location VALUES (11, '2013-05-25', 'Edward Frenkel', '613-649-6479', '120 Elgin Street', '12:00, 00:00', 10);
-INSERT INTO location VALUES (12, '2015-02-22', 'Augustin Cauchy', '613-420-0240', '360 Fake Street', '15:00, 3:00', 11);
-INSERT INTO location VALUES (13, '2015-03-33', 'Issac Newton', '613-000-0000', '25 Rideau Street', '08:00', '20:00', 12);
-INSERT INTO location VALUES (14, '2015-03-33', 'Carl Gauss', '613-111-1111', '420 Blaze Street', '16:20', '04:20', 12);
+INSERT INTO location VALUES (8, '2014-04-01', 'Bertrand Russel', '613-987-6543', '50 Rideau Street', '12:00', '02:00', 7);
+INSERT INTO location VALUES (9, '2015-04-13', 'Pierre Fermat', '613-235-7110', '1 Wellington Street', '10:00', '21:00', 8);
+INSERT INTO location VALUES (10, '2014-04-20', 'Louis Lagrange', '613-416-4169', '525 King Edward Avenue', '09:00', '00:00', 9);
+INSERT INTO location VALUES (11, '2013-05-25', 'Edward Frenkel', '613-649-6479', '120 Elgin Street', '12:00', '00:00', 10);
+INSERT INTO location VALUES (12, '2015-02-22', 'Augustin Cauchy', '613-420-0240', '360 Fake Street', '15:00', '3:00', 11);
+INSERT INTO location VALUES (13, '2015-03-11', 'Issac Newton', '613-000-0000', '25 Rideau Street', '08:00', '20:00', 12);
+INSERT INTO location VALUES (14, '2015-03-15', 'Carl Gauss', '613-111-1111', '420 Blaze Street', '16:20', '04:20', 12);
 
 --rating insertions
 --have not tried inserting
