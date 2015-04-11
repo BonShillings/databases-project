@@ -16,7 +16,7 @@ CREATE TABLE rater
 CREATE TABLE restaurant
  (
    restaurantID INTEGER NOT null,
-   name VARCHAR(20),
+   name VARCHAR(50),
    type VARCHAR(30),
    URL VARCHAR(512),
    CONSTRAINT restaurant_pkey PRIMARY KEY (restaurantID)
