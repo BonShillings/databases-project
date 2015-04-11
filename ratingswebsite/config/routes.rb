@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :raters
   resources :restaurants
   resources :restaurants
+  get '/search' => 'pages#search'
   get 'login/homepage'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<div class="container">
+<!-- Brand and toggle get grouped for better mobile display -->
+<div class="navbar-header">
+<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+<span class="sr-only">Toggle navigation</span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+<span class="icon-bar"></span>
+</button>
+<a class="navbar-brand" href="http://localhost:3000">RestaurantRater</a>
+</div>
+<!-- Collect the nav links, forms, and other content for toggling -->
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<ul class="nav navbar-nav">
+<li>
+<!-- replace # with distination-->
+<a href="http://localhost:3000/restaurants">Restaurant Info</a>
+</li>
+<li>
+<a href="http://localhost:3000/raters">Rater Info</a>
+</li>
+<li>
+<a href="http://localhost:3000/menuitems">Food</a>
+</li>
+<li>
+<a href="http://localhost:3000/search">Search</a>
+</li>
+<li>
+<a href="#">Analytics</a>
+</li>
+</li>
+</ul>
+</div>
+<!-- /.navbar-collapse -->
+</div>
+<!-- /.container -->
+</nav>
+<br> <br>
+
+<br>
+
+<font size = "3" color="red"> Restaurant Info Queries </font>
+<br> <br>
+
+<%= form_tag("/search", method: "get") do %>
+    <%= label_tag(:q, "Search for:") %>
+    <%= select_tag(:name, options_for_select([['info and location', 1],['menu items', 2],['most expensive meal', 3]], 2)) %>
+    <%= label_tag(:q, "from the restaurant: ") %>
+    <% options = options_from_collection_for_select(@restaurantList, 'id', 'name') %>
+    <%= select_tag(:name, options) %>
+    <%= submit_tag("Search") %>
+<% end %>
+
+<br>
+
+<%= form_tag("/search", method: "get") do %>
+    <%= label_tag(:q, "Search for:") %>
+    <%= select_tag(:name, options_for_select([['manager and opening date', 1],['average item price', 2]], 2)) %>
+    <%= label_tag(:q, "for the type: ") %>
+    <% options = options_from_collection_for_select(@restaurantList, 'id', 'rtype') %>
+    <%= select_tag(:name, options) %>
+    <%= submit_tag("Search") %>
+<% end %>
+
+
+<br> <br>
+
+<font size = "3" color="blue"> Restaurant Rating Queries </font>
+
+<br> <br>
+
+<!-- query f -->
+<%= form_tag("/search", method: "get") do %>
+<%= label_tag(:q, "Display rating distribution") %>
+<%= submit_tag("Display") %>
+<% end %>
+
+<br>
+
+<!-- query g -->
+<%= form_tag("/search", method: "get") do %>
+<%= label_tag(:q, "Restaurant details for unrated restaurants: ") %>
+<%= submit_tag("Search") %>
+<% end %>
+
+<br>
+
+<!-- query h -->
+<%= form_tag("/search", method: "get") do %>
+<%= label_tag(:q, "Restaurants with staff ratings below: ") %>
+<% options = options_from_collection_for_select(@raterList, 'id', 'name') %>
+<%= select_tag(:name, options) %>
+<%= submit_tag("Search") %>
+<% end %>
+
+<br>
+<!-- query i -->
+<%= form_tag("/search", method: "get") do %>
+<%= label_tag(:q, "Search for highest rated restaurants of type: ") %>
+<%= options = options_from_collection_for_select(@restaurantList, 'id', 'rtype') %>
+<%= select_tag(:name, options) %>
+<%= submit_tag("Search") %>
+<% end %>
+
+<br>
+
+<!-- query j -->
+<%= form_tag("/search", method: "get") do %>
+<%= label_tag(:q, "Are restaurants of type: ") %>
+<%= options = options_from_collection_for_select(@restaurantList, 'id', 'rtype') %>
+<%= select_tag(:name, options) %>
+<%= label_tag(:q, "more popular?") %>
+<%= submit_tag("Check") %>
+<% end %>
+
+<br> <br>
+
+<font size = "3" color="green"> Rater Queries </font>
+
+<br> <br>
+
+<!-- query k -->
+<%= form_tag("/search", method: "get") do %>
+<%= label_tag(:q, "Display best rater info") %>
+<%= submit_tag("Display") %>
+<% end %>
+<br>
+<!-- query l -->
+<%= form_tag("/search", method: "get") do %>
+<%= label_tag(:q, "Display best rater info in terms of: ") %>
+<%= select_tag(:name, options_for_select([['food', 1],['mood', 2]], 2)) %>
+<%= submit_tag("Display") %>
+<% end %>
+<br>
+<!-- query m -->
+<%= form_tag("/search", method: "get") do %>
+<%= label_tag(:q, "Display raters for the restaurant: ") %>
+<% options = options_from_collection_for_select(@restaurantList, 'id', 'name') %>
+<%= select_tag(:name, options) %>
+<%= submit_tag("Display") %>
+<% end %>
+<br>
+<!-- query n -->
+<%= form_tag("/search", method: "get") do %>
+<%= label_tag(:q, "Raters with ratings below: ") %>
+<% options = options_from_collection_for_select(@raterList, 'id', 'name') %>
+<%= select_tag(:name, options) %>
+<%= submit_tag("Search") %>
+<% end %>
+<br> 
+<!-- query o -->
+<%= form_tag("/search", method: "get") do %>
+<%= label_tag(:q, "Display diverse raters") %>
+<%= submit_tag("Display") %>
+<% end %>
+
+<br>
+</html>
