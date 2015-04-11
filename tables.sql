@@ -5,7 +5,7 @@ CREATE TABLE rater
   userID INTEGER NOT NULL,
   email VARCHAR(30),
   name VARCHAR(20),
-  join_date DATE,
+  join_date DATE NOT NULL,
   type VARCHAR(20),
   reputation INTEGER DEFAULT 1,
   CONSTRAINT rater_pkey PRIMARY KEY (userID),
@@ -15,9 +15,9 @@ CREATE TABLE rater
 
 CREATE TABLE restaurant
  (
-   restaurantID INTEGER NOT null,
-   name VARCHAR(50),
-   type VARCHAR(30),
+   restaurantID INTEGER NOT NULL,
+   name VARCHAR(50) NOT NULL,
+   type VARCHAR(30) NOT NULL,
    URL VARCHAR(512),
    CONSTRAINT restaurant_pkey PRIMARY KEY (restaurantID)
  );
@@ -38,7 +38,7 @@ CREATE TABLE rating
   CONSTRAINT rating_restaurantID_fkey FOREIGN KEY (restaurantID)
 	REFERENCES restaurant(restaurantID)
 	ON UPDATE CASCADE ON DELETE CASCADE,
-  CONSTRAINT rating_pkey PRIMARY KEY (userID, date),
+  CONSTRAINT rating_pkey PRIMARY KEY (userID, date, restaurantID),
   CONSTRAINT rating_price CHECK (price >= 1 AND price <= 5),
   CONSTRAINT rating_food CHECK (food >= 1 AND food <= 5),
   CONSTRAINT rating_mood CHECK (mood >= 1 AND mood <= 5),
@@ -48,12 +48,12 @@ CREATE TABLE rating
  CREATE TABLE location
  (
    locationID INTEGER NOT NULL,
-   first_open_date DATE,
-   manager_name VARCHAR(20),
-   phone_number VARCHAR(15),
-   street_address CHAR(95),
-   hour_open VARCHAR(5),
-   hour_close VARCHAR(5),
+   first_open_date DATE NOT NULL,
+   manager_name VARCHAR(20) NOT NULL,
+   phone_number VARCHAR(15) NOT NULL,
+   street_address CHAR(95) NOT NULL,
+   hour_open VARCHAR(5) NOT NULL,
+   hour_close VARCHAR(5) NOT NULL,
    restaurantID INTEGER NOT NULL,
    CONSTRAINT location_restaurantID_fkey FOREIGN KEY (restaurantID)
 	REFERENCES restaurant(restaurantID)
@@ -64,8 +64,8 @@ CREATE TABLE rating
  CREATE TABLE menuItem
  (
    itemID INTEGER NOT NULL,
-   name VARCHAR(50),
-   type VARCHAR(8),
+   name VARCHAR(50) NOT NULL,
+   type VARCHAR(8) NOT NULL,
    category VARCHAR(7),
    description TEXT,
    price DECIMAL,
@@ -80,10 +80,10 @@ CREATE TABLE rating
  
 CREATE TABLE ratingItem
 (
-  userID INTEGER,
-  date DATE,
-  itemID INTEGER,
-  rating INTEGER, 
+  userID INTEGER NOT NULL,
+  date DATE NOT NULL,
+  itemID INTEGER NOT NULL,
+  rating INTEGER NOT NULL, 
   comment TEXT,
   CONSTRAINT ratingItem_pkey PRIMARY KEY (userID, date, itemID),
   CONSTRAINT ratingItem_userID_fkey FOREIGN KEY (userID)
