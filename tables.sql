@@ -1,4 +1,4 @@
-﻿set search_path = "project";
+set search_path = "test";
 
 CREATE TABLE rater
 (
@@ -12,6 +12,15 @@ CREATE TABLE rater
   CONSTRAINT rater_reputation CHECK (reputation >= 1 AND reputation <= 5),
   CONSTRAINT rater_type CHECK (type IN ('blog', 'online', 'critic'))
 );
+
+CREATE TABLE restaurant
+ (
+   restaurantID INTEGER NOT null,
+   name VARCHAR(20),
+   type VARCHAR(30),
+   URL VARCHAR(512),
+   CONSTRAINT restaurant_pkey PRIMARY KEY (restaurantID)
+ );
 
 CREATE TABLE rating
 (
@@ -34,15 +43,6 @@ CREATE TABLE rating
   CONSTRAINT rating_food CHECK (food >= 1 AND food <= 5),
   CONSTRAINT rating_mood CHECK (mood >= 1 AND mood <= 5),
   CONSTRAINT rating_staff CHECK (staff >= 1 AND staff <= 5)
- );
-
- CREATE TABLE restaurant
- (
-   restaurantID INTEGER NOT null,
-   name VARCHAR(20),
-   type VARCHAR(30),
-   URL VARCHAR(512),
-   CONSTRAINT restaurant_pkey PRIMARY KEY (restaurantID)
  );
 
  CREATE TABLE location
