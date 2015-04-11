@@ -1,7 +1,4 @@
-﻿set search_path = "project";
-
-ALTER TABLE rating
-ADD restaurantID INTEGER;
+set search_path = "test";
 
 --restaurant insertions
 INSERT INTO restaurant VALUES (1, 'North and Navy', 'Italian', 'http://northandnavy.com/');
@@ -93,9 +90,107 @@ INSERT INTO location VALUES (13, '2015-03-11', 'Issac Newton', '613-000-0000', '
 INSERT INTO location VALUES (14, '2015-03-15', 'Carl Gauss', '613-111-1111', '420 Blaze Street', '16:20', '04:20', 12);
 
 --rating insertions
---have not tried inserting
-INSERT INTO rating VALUES (1, '2015-01-01', 1, 1, 1, 1, '1/5 would not eat again', 1);
-INSERT INTO rating VALUES (1, '2015-02-02', 5, 5, 5, 5, '5/5 would eat again', 1);
-INSERT INTO rating VALUES (2, '2015-03-03', 3, 3, 3, 3, '3/5 would eat again', 1);
-INSERT INTO rating VALUES (3, '2015-01-02', 1, 2, 3, 4, '2.5/5 would not eat again', 1);
-INSERT INTO rating VALUES (4, '2015-06-07', 5, 4, 3, 2, '3.5/5 would eat again', 1);
+INSERT INTO rating VALUES (1, '2015-01-01', 1, 1, 1, 1, '4/20 would not eat again', 1);
+INSERT INTO rating VALUES (2, '2015-01-02', 1, 1, 1, 2, '5/20 would not eat again', 1);
+INSERT INTO rating VALUES (3, '2015-01-03', 1, 1, 1, 3, '6/20 would not eat again', 1);
+INSERT INTO rating VALUES (4, '2015-01-04', 1, 1, 1, 4, '7/20 would not eat again', 1);
+INSERT INTO rating VALUES (5, '2015-01-05', 1, 1, 1, 5, '8/20 would not eat again', 1);
+INSERT INTO rating VALUES (6, '2015-01-06', 1, 1, 2, 1, '5/20 would not eat again', 1);
+INSERT INTO rating VALUES (7, '2015-01-07', 1, 1, 3, 1, '6/20 would not eat again', 1);
+INSERT INTO rating VALUES (8, '2015-01-08', 1, 1, 4, 1, '7/20 would not eat again', 1);
+
+INSERT INTO rating VALUES (9, '2015-02-01', 5, 5, 5, 5, '20/20 would eat again', 2);
+INSERT INTO rating VALUES (10, '2015-02-02', 4, 5, 5, 5, '19/20 would eat again', 2);
+INSERT INTO rating VALUES (11, '2015-02-03', 3, 5, 5, 5, '18/20 would eat again', 2);
+INSERT INTO rating VALUES (12, '2015-02-04', 2, 5, 5, 5, '17/20 would eat again', 2);
+INSERT INTO rating VALUES (13, '2015-02-05', 1, 5, 5, 5, '16/20 would eat again', 2);
+INSERT INTO rating VALUES (14, '2015-02-06', 3, 3, 3, 3, '12/20 would consider eating again', 2);
+INSERT INTO rating VALUES (15, '2015-02-07', 2, 3, 3, 3, '11/20 would not eat again', 2);
+INSERT INTO rating VALUES (1, '2015-02-08', 1, 3, 3, 3, '10/20 would not eat again', 2);
+
+INSERT INTO rating VALUES (1, '2015-03-01', 1, 1, 1, 1, '4/20 would not eat again', 3);
+INSERT INTO rating VALUES (2, '2015-03-02', 2, 2, 2, 2, '8/20 would not eat again', 3);
+INSERT INTO rating VALUES (2, '2015-03-03', 3, 3, 3, 3, '12/20 would consider eating again', 3);
+INSERT INTO rating VALUES (3, '2015-03-04', 4, 4, 4, 4, '16/20 would eat again', 3);
+INSERT INTO rating VALUES (3, '2015-03-05', 5, 5, 5, 5, '20/20 would definitely eat again', 3);
+INSERT INTO rating VALUES (4, '2015-03-06', 1, 2, 3, 4, '10/20 would not eat again', 3);
+INSERT INTO rating VALUES (4, '2015-03-07', 5, 3, 4, 5, '17/20 would eat again', 3);
+INSERT INTO rating VALUES (5, '2015-03-08', 3, 4, 5, 2, '14/20 would consider eating again', 3);
+
+INSERT INTO rating VALUES (5, '2015-01-10', 3, 4, 3, 4, '14/20 would consider eating again', 4);
+INSERT INTO rating VALUES (9, '2015-01-11', 3, 2, 3, 3, '11/20 would not eat agian', 4);
+INSERT INTO rating VALUES (1, '2015-01-12', 2, 2, 2, 2, '8/20 would not eat again', 4);
+INSERT INTO rating VALUES (2, '2015-01-13', 3, 3, 2, 2, '10/20 would not eat again', 4);
+INSERT INTO rating VALUES (3, '2015-01-14', 5, 1, 5, 1, '12/20 would consider eating again', 4);
+INSERT INTO rating VALUES (4, '2015-01-15', 4, 3, 2, 1, '10/20 would not eat again', 4);
+INSERT INTO rating VALUES (5, '2015-01-16', 3, 3, 3, 3, '12/20 would consider eating again', 4);
+INSERT INTO rating VALUES (6, '2015-01-17', 2, 3, 2, 3, '10/20 would not eat again', 4);
+
+INSERT INTO rating VALUES (7, '2015-01-18', 1, 1, 1, 1, '4/20 would not eat again', 5);
+INSERT INTO rating VALUES (8, '2015-02-10', 1, 2, 3, 4, '10/20 would not eat again', 5);
+INSERT INTO rating VALUES (9, '2015-02-11', 5, 5, 5, 5, '20/20 would eat again', 5);
+INSERT INTO rating VALUES (10, '2015-02-12', 4, 4, 4, 4, '16/20 would eat agian', 5);
+INSERT INTO rating VALUES (11, '2015-02-13', 3, 3, 3, 3, '12/10 would consider again', 5);
+INSERT INTO rating VALUES (12, '2015-02-14', 5, 4, 5, 4, '18/20 would eat again', 5);
+INSERT INTO rating VALUES (13, '2015-02-15', 5, 4, 4, 4, '17/20 would eat again', 5);
+INSERT INTO rating VALUES (14, '2015-02-16', 3, 5, 3, 4, '15/20 would consider eating again', 5);
+
+INSERT INTO rating VALUES (15, '2015-03-11', 3, 3, 3, 3, '12/20 would consider eating again', 6);
+INSERT INTO rating VALUES (1, '2015-03-12', 4, 3, 3, 3, '13/20 would consider eating again', 6);
+INSERT INTO rating VALUES (2, '2015-03-13', 5, 3, 3, 3, '14/20 would consider eating again', 6);
+INSERT INTO rating VALUES (3, '2015-03-14', 5, 4, 3, 3, '15/20 would consider eating again', 6);
+INSERT INTO rating VALUES (4, '2015-03-15', 5, 5, 3, 3, '16/20 would eat again', 6);
+INSERT INTO rating VALUES (5, '2015-03-16', 3, 3, 3, 4, '13/20 would consider eating again', 6);
+INSERT INTO rating VALUES (6, '2015-03-17', 3, 3, 2, 5, '13/20 would consider eating again', 6);
+INSERT INTO rating VALUES (7, '2015-03-18', 5, 2, 5, 3, '15/20 would consider eating again', 6);
+
+INSERT INTO rating VALUES (8, '2014-05-01', 5, 5, 5, 5, '20/20 would eat again', 7);
+INSERT INTO rating VALUES (9, '2014-05-02', 5, 5, 5, 5, '20/20 would eat again', 7);
+INSERT INTO rating VALUES (10, '2014-05-04', 5, 4, 4, 5, '18/20 would eat again', 7);
+INSERT INTO rating VALUES (11, '2015-05-05', 5, 4, 5, 5, '19/20 would eat again', 7);
+INSERT INTO rating VALUES (8, '2015-04-01', 3, 3, 3, 3, '12/20 would consider eating again', 7);
+INSERT INTO rating VALUES (9, '2015-04-02', 3, 3, 3, 3, '12/20 would consider eating again', 7);
+INSERT INTO rating VALUES (10, '2015-04-03', 2, 3, 2, 4, '11/20 would consider eating again', 7);
+INSERT INTO rating VALUES (11, '2015-04-04', 3, 3, 2, 2, '12/20 would consider eating again', 7);
+
+INSERT INTO rating VALUES (1, '2015-04-13', 4, 4, 4, 4, '16/20 would eat again', 8);
+INSERT INTO rating VALUES (2, '2015-04-13', 4, 3, 4, 3, '14/20 would consider eating again', 8);
+INSERT INTO rating VALUES (3, '2015-04-14', 3, 3, 3, 3, '12/20 would consider eating again', 8);
+INSERT INTO rating VALUES (15, '2015-04-15', 3, 2, 3, 4, '12/20 would consider eating again', 8);
+INSERT INTO rating VALUES (13, '2015-04-16', 1, 1, 1, 1, '4/20 would not eat again', 8);
+
+INSERT INTO rating VALUES (15, '2014-05-01', 5, 1, 1, 1, '8/20 would not eat again', 9);
+INSERT INTO rating VALUES (14, '2014-05-02', 1, 5, 1, 2, '9/20 would not eat again', 9);
+INSERT INTO rating VALUES (13, '2014-05-03', 1, 1, 5, 3, '10/20 would not eat again', 9);
+INSERT INTO rating VALUES (12, '2014-05-04', 1, 1, 1, 4, '7/20 would not eat again', 9);
+INSERT INTO rating VALUES (12, '2014-05-05', 1, 1, 4, 5, '11/20 would not eat again', 9);
+INSERT INTO rating VALUES (13, '2014-05-06', 1, 4, 2, 1, '8/20 would not eat again', 9);
+INSERT INTO rating VALUES (14, '2014-05-07', 1, 1, 3, 1, '6/20 would not eat again', 9);
+INSERT INTO rating VALUES (15, '2014-05-08', 4, 1, 4, 1, '10/20 would not eat again', 9);
+
+INSERT INTO rating VALUES (5, '2014-05-01', 5, 5, 5, 5, '20/20 would eat again', 10);
+INSERT INTO rating VALUES (6, '2014-05-02', 5, 5, 5, 5, '20/20 would eat again', 10);
+INSERT INTO rating VALUES (15, '2014-05-04', 5, 4, 4, 5, '18/20 would eat again', 10);
+INSERT INTO rating VALUES (10, '2015-05-05', 5, 4, 5, 5, '19/20 would eat again', 10);
+INSERT INTO rating VALUES (15, '2015-04-01', 3, 3, 3, 3, '12/20 would consider eating again', 10);
+INSERT INTO rating VALUES (5, '2015-04-02', 3, 3, 3, 3, '12/20 would consider eating again', 10);
+INSERT INTO rating VALUES (6, '2015-04-03', 2, 3, 2, 4, '11/20 would consider eating again', 10);
+INSERT INTO rating VALUES (6, '2015-04-04', 3, 3, 2, 2, '12/20 would consider eating again', 10);
+
+INSERT INTO rating VALUES (1, '2015-02-22', 1, 4, 4, 4, '13/20 would consider eating again', 11);
+INSERT INTO rating VALUES (2, '2015-02-13', 4, 1, 4, 3, '12/20 would consider eating again', 11);
+INSERT INTO rating VALUES (3, '2015-02-14', 3, 3, 1, 3, '12/20 would consider eating again', 11);
+INSERT INTO rating VALUES (4, '2015-02-15', 3, 2, 3, 1, '9/20 would not eat again', 11);
+INSERT INTO rating VALUES (4, '2015-04-20', 4, 4, 1, 4, '13/20 would consider eating again', 11);
+INSERT INTO rating VALUES (5, '2015-04-21', 3, 1, 3, 4, '10/20 would not again', 11);
+INSERT INTO rating VALUES (15, '2015-04-15', 3, 2, 5, 4, '14/20 would consider eating again', 11);
+INSERT INTO rating VALUES (13, '2015-04-16', 1, 1, 1, 1, '4/20 would not eat again', 11);
+
+INSERT INTO rating VALUES (7, '2015-03-20', 3, 3, 3, 3, '12/20 would consider earting again', 12);
+INSERT INTO rating VALUES (8, '2015-03-20', 3, 3, 3, 3, '12/20 would consider eating again', 12);
+INSERT INTO rating VALUES (9, '2015-03-20', 3, 3, 3, 3, '12/20 would consider eating again', 12);
+INSERT INTO rating VALUES (10, '2015-03-20', 3, 3, 3, 3, '12/20 would consider eating again', 12);
+INSERT INTO rating VALUES (7, '2015-03-30', 1, 1, 1, 1, '4/20 would not eat again', 12);
+INSERT INTO rating VALUES (8, '2015-03-30', 1, 1, 1, 1, '4/20 would not eat again', 12);
+INSERT INTO rating VALUES (9, '2015-03-30', 1, 1, 1, 1, '4/20 would not eat again', 12);
+INSERT INTO rating VALUES (10, '2015-03-30', 1, 1, 1, 1, '4/20 would not eat again', 12);
