@@ -28,3 +28,53 @@ WHERE R.name = 'North and Navy' AND L.restaurantID = R.restaurantID AND M.restau
   FROM menuItem M1
   WHERE M1.restaurantID = M.restaurantID
   );
+
+--e
+--perhaps there is a more efficient way to do this
+--replace 'Canadian' with type of food selected
+SELECT AVG(M.price), M.category
+FROM menuItem M, restaurant R
+WHERE M.category = 'starter' AND R.restaurantID = M.restaurantID AND R.type = 'Canadian'
+GROUP BY M.category
+UNION 
+SELECT AVG(M1.price), M1.category
+FROM menuItem M1, restaurant R1
+WHERE M1.category = 'main' AND R1.restaurantID = M1.restaurantID AND R1.type = 'Canadian'
+GROUP BY M1.category
+UNION 
+SELECT AVG(M2.price), M2.category
+FROM menuItem M2, restaurant R2
+WHERE M2.category = 'desert' AND R2.restaurantID = M2.restaurantID AND R2.type = 'Canadian'
+GROUP BY M2.category;
+
+--g
+SELECT DISTINCT R.name, R.type, L.phone_number
+FROM restaurant R, location L, rating R1
+WHERE L.restaurantID = R.restaurantID AND R1.restaurantID = R.restaurantID AND R.restaurantID NOT IN
+  (
+  SELECT R.restaurantID
+  FROM restaurant R, rating R1
+  WHERE (R1.date < '2015-02-01' AND R1.date > '2014-12-31') AND R1.restaurantID = R.restaurantID
+  );
+
+--h
+--terribly inefficient, works for now but should find more efficient implementation
+SELECT DISTINCT R.name, L.first_open_date
+FROM restaurant R, location L, rating R1, rater R2
+WHERE R.restaurantID = L.restaurantID AND R1.restaurantID = R.restaurantID AND 
+R1.staff < (
+SELECT MIN(R.staff)
+FROM rating R, rater R1
+WHERE R.userID = R1.userID AND R1.userID = 11)
+AND R1.staff <(
+SELECT MIN(R.mood)
+FROM rating R, rater R1
+WHERE R.userID = R1.userID AND R1.userID = 11)
+AND R1.staff <(
+SELECT MIN(R.food)
+FROM rating R, rater R1
+WHERE R.userID = R1.userID AND R1.userID = 11)
+AND R1.staff <(
+SELECT MIN(R.price)
+FROM rating R, rater R1
+WHERE R.userID = R1.userID AND R1.userID = 11);
