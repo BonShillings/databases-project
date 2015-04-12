@@ -82,7 +82,8 @@ AND R1.staff <
 SELECT MIN(R.price)
 FROM rating R, rater R1
 WHERE R.userID = R1.userID AND R1.userID = 11
-);
+)
+ORDER BY L.first_open_date;
 
 --i
 --replace 'Canadian' with type of restaurant selected
