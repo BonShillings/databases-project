@@ -78,3 +78,63 @@ AND R1.staff <(
 SELECT MIN(R.price)
 FROM rating R, rater R1
 WHERE R.userID = R1.userID AND R1.userID = 11);
+
+--i
+--replace 'Canadian' with type of restaurant selected
+SELECT DISTINCT R2.name, R.name
+FROM rater R, rating R1, restaurant R2
+WHERE R2.type = 'Canadian' AND R1.restaurantID = R2.restaurantID AND R1.userID = R.userID AND
+R1.food = (
+SELECT MAX(R1.food)
+FROM rater R, rating R1, restaurant R2
+WHERE R2.type = 'Canadian' AND R1.restaurantID = R2.restaurantID AND R1.userID = R.userID
+)
+ORDER BY R2.name;
+
+--j
+--assuming more popular means the best overall rating
+SELECT (AVG(R1.food) + AVG(R1.price) + AVG(R1.mood) + AVG(R1.staff)) / 4 AS average_rating, R2.type
+FROM rater R, rating R1, restaurant R2
+WHERE R1.restaurantID = R2.restaurantID AND R1.userID = R.userID
+GROUP BY R2.type
+ORDER BY average_rating;
+
+--k
+SELECT DISTINCT R.name, R.reputation, R.join_date, R2.name, R1.date
+FROM rater R, rating R1, restaurant R2
+WHERE R.userID = R1.userID AND R1.restaurantID = R2.restaurantID AND (R1.food + R1.mood) / 2 >=
+(
+SELECT (MAX(R1.food) + MAX(R1.mood)) / 2
+FROM rater R, rating R1, restaurant R2
+WHERE R1.restaurantID = R2.restaurantID AND R1.userID = R.userID
+);
+
+--l
+SELECT DISTINCT R.name, R.reputation, R2.name, R1.date
+FROM rater R, rating R1, restaurant R2
+WHERE R.userID = R1.userID AND R1.restaurantID = R2.restaurantID AND (R1.food + R1.mood) / 2 >=
+(
+SELECT (MAX(R1.food) + MAX(R1.mood)) / 2
+FROM rater R, rating R1, restaurant R2
+WHERE R1.restaurantID = R2.restaurantID AND R1.userID = R.userID
+);
+
+--m
+--replace 'The Albion Rooms' with the restaurant selected
+SELECT DISTINCT R.userID, R.reputation, R1.comments
+FROM rater R, rating R1, restaurant R2
+WHERE R1.userID = R.userID AND R2.name = 'The Albion Rooms' AND R1.restaurantID = R2.restaurantID AND R.userID IN 
+(
+--this selects the rater with the most ratings for the restaurant 'The Albion Room'
+SELECT R1.userID
+FROM rater R, rating R1, restaurant R2
+WHERE R2.name = 'The Albion Rooms' AND R1.restaurantID = R2.restaurantID AND R1.userID = R.userID
+GROUP BY R1.userID, R.reputation, R2.name
+HAVING COUNT(*) >= ALL
+	(
+	SELECT COUNT(*)
+	FROM rating R1, restaurant R
+	WHERE R.name = 'The Albion Rooms' AND R1.restaurantID = R.restaurantID
+	GROUP BY R1.userID
+	)
+);
