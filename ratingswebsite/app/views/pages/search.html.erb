@@ -57,7 +57,7 @@
     <%= options = options_from_collection_for_select(@restaurantList, 'id', 'name') %>
 <%= select_tag(:aname, options, :aname => params[:aname] ) %>
     <%= submit_tag "Search" %>
-    <%= @results = query_abd %>
+    <% @results = query_abd %>
 <% end %>
 
 <br>
@@ -167,18 +167,26 @@
 
 <font size = "3" color="purple"> Results </font>
 
-<br>
+<br> <br>
 <div id="resultsTable">
-<table>
+<table BORDER="2" CELLPADDING="2" CELLSPACING="2">
     <thead>
+       <% if (@results != []) %>
+            <% (1..@results.nfields()).each do |i| %>
+               <th> <%= @results.fname(i - 1)  %> </th>
+            <% end %>
+        <% end %>
         <th colspan = @results.length></th>
     </thead>
-<tbody>
-    <%= @results.each do |result| %>
-        <%= result.values %> <br>
-    <% end %>
+    <tbody>
 
-</tbody>
+       <tr> <% @results.each do |result| %> </tr>
+             <% result.values.each do |value| %>
+               <td>  <%= value %> </td>
+            <% end %>
+        <% end %>
+
+    </tbody>
 </table>
 <br />
 </div>
