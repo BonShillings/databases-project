@@ -49,13 +49,15 @@
 <font size = "3" color="red"> Restaurant Info Queries </font>
 <br> <br>
 
-<%= form_tag("/search", method: "get") do %>
+<!-- query abd -->
+<%= form_tag("/search", method: "get") do |f| %>
     <%= label_tag(:q, "Search for:") %>
-    <%= select_tag(:name, options_for_select([['info and location', 1],['menu items', 2],['most expensive meal', 3]], 2)) %>
+    <%= select_tag(:achoice, options_for_select([['info and location', 1],['menu items', 2],['most expensive meal', 3]], 2), :selected => params[:achoice] ) %>
     <%= label_tag(:q, "from the restaurant: ") %>
     <% options = options_from_collection_for_select(@restaurantList, 'id', 'name') %>
-    <%= select_tag(:name, options) %>
-    <%= submit_tag("Search") %>
+    <%= select_tag(:aname, options, :selected => params[:achoice]) %>
+    <%= submit_tag "Search" %>
+    <%= @results = query_abd %>
 <% end %>
 
 <br>
@@ -162,4 +164,21 @@
 <% end %>
 
 <br>
+
+<font size = "3" color="purple"> Results </font>
+<br>
+<div id="resultsTable">
+<table>
+    <thead>
+        <th colspan = @results.length></th>
+    </thead>
+<tbody>
+    <%= @results.each do |result| %>
+        <%= result.values %> <br>
+    <% end %>
+
+</tbody>
+</table>
+<br />
+</div>
 </html>
