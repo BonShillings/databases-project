@@ -61,23 +61,28 @@ WHERE L.restaurantID = R.restaurantID AND R1.restaurantID = R.restaurantID AND R
 --terribly inefficient, works for now but should find more efficient implementation
 SELECT DISTINCT R.name, L.first_open_date
 FROM restaurant R, location L, rating R1, rater R2
-WHERE R.restaurantID = L.restaurantID AND R1.restaurantID = R.restaurantID AND 
-R1.staff < (
+WHERE R.restaurantID = L.restaurantID AND R1.restaurantID = R.restaurantID AND R1.staff < 
+(
 SELECT MIN(R.staff)
 FROM rating R, rater R1
-WHERE R.userID = R1.userID AND R1.userID = 11)
-AND R1.staff <(
+WHERE R.userID = R1.userID AND R1.userID = 11
+)
+AND R1.staff <
+(
 SELECT MIN(R.mood)
 FROM rating R, rater R1
 WHERE R.userID = R1.userID AND R1.userID = 11)
-AND R1.staff <(
+AND R1.staff <
+(
 SELECT MIN(R.food)
 FROM rating R, rater R1
 WHERE R.userID = R1.userID AND R1.userID = 11)
-AND R1.staff <(
+AND R1.staff <
+(
 SELECT MIN(R.price)
 FROM rating R, rater R1
-WHERE R.userID = R1.userID AND R1.userID = 11);
+WHERE R.userID = R1.userID AND R1.userID = 11
+);
 
 --i
 --replace 'Canadian' with type of restaurant selected
