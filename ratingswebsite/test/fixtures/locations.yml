@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  opening_date: 2015-04-12
+  manager_name: MyString
+  phone_number: MyString
+  street_address: MyString
+  hour_open: MyString
+  hour_close: MyString
+  restaurant_id: 1
+
+two:
+  opening_date: 2015-04-12
+  manager_name: MyString
+  phone_number: MyString
+  street_address: MyString
+  hour_open: MyString
+  hour_close: MyString
+  restaurant_id: 1

@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410161111) do
+ActiveRecord::Schema.define(version: 20150412061821) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "locations", force: :cascade do |t|
+    t.date     "opening_date"
+    t.string   "manager_name"
+    t.string   "phone_number"
+    t.string   "street_address"
+    t.string   "hour_open"
+    t.string   "hour_close"
+    t.integer  "restaurant_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "menuitems", force: :cascade do |t|
     t.string   "name"
@@ -22,9 +34,9 @@ ActiveRecord::Schema.define(version: 20150410161111) do
     t.string   "mcategory"
     t.text     "description"
     t.decimal  "price"
-    t.integer  "restaurantID"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.integer  "restaurant_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "raters", force: :cascade do |t|
@@ -37,6 +49,29 @@ ActiveRecord::Schema.define(version: 20150410161111) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "rating_items", force: :cascade do |t|
+    t.integer  "rater_id"
+    t.date     "date"
+    t.integer  "menuitem_id"
+    t.integer  "item_rating"
+    t.string   "comment"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "rater_id"
+    t.date     "date"
+    t.integer  "price"
+    t.integer  "food"
+    t.integer  "mood"
+    t.integer  "staff"
+    t.text     "comments"
+    t.integer  "restaurant_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"
     t.string   "rtype"
@@ -45,4 +80,10 @@ ActiveRecord::Schema.define(version: 20150410161111) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "locations", "restaurants", name: "location_restaurantid_fkey", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "menuitems", "restaurants", name: "menuitem_restaurant_id_fkey", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "rating_items", "menuitems", name: "ratingitem_itemid_fkey", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "rating_items", "raters", name: "ratingitem_userid_fkey", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "ratings", "raters", name: "rating_userid_fkey", on_update: :cascade, on_delete: :cascade
+  add_foreign_key "ratings", "restaurants", name: "rating_restaurantid_fkey", on_update: :cascade, on_delete: :cascade
 end

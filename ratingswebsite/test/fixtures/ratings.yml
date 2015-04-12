@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rater_id: 1
+  date: 2015-04-12
+  price: 1
+  food: 1
+  mood: 1
+  staff: 1
+  comments: MyText
+  restaurant_id: 1
+
+two:
+  rater_id: 1
+  date: 2015-04-12
+  price: 1
+  food: 1
+  mood: 1
+  staff: 1
+  comments: MyText
+  restaurant_id: 1
