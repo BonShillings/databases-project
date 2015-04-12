@@ -50,12 +50,12 @@
 <br> <br>
 
 <!-- query abd -->
-<%= form_tag("/search", method: "get") do |f| %>
+<%= form_tag("/search", method: "get") do %>
     <%= label_tag(:q, "Search for:") %>
-    <%= select_tag(:achoice, options_for_select([['info and location', 1],['menu items', 2],['most expensive meal', 3]], 2), :selected => params[:achoice] ) %>
+<%= select_tag(:achoice, options_for_select([['info and location', 1],['menu items', 2],['most expensive meal', 3]], 2), :achoice => params[:achoice] ) %>
     <%= label_tag(:q, "from the restaurant: ") %>
-    <% options = options_from_collection_for_select(@restaurantList, 'id', 'name') %>
-    <%= select_tag(:aname, options, :selected => params[:achoice]) %>
+    <%= options = options_from_collection_for_select(@restaurantList, 'id', 'name') %>
+<%= select_tag(:aname, options, :aname => params[:aname] ) %>
     <%= submit_tag "Search" %>
     <%= @results = query_abd %>
 <% end %>
@@ -166,6 +166,7 @@
 <br>
 
 <font size = "3" color="purple"> Results </font>
+
 <br>
 <div id="resultsTable">
 <table>
