@@ -55,20 +55,21 @@
 <%= select_tag(:achoice, options_for_select([['info and location', 1],['menu items', 2],['most expensive meal', 3]], 2), :achoice => params[:achoice] ) %>
     <%= label_tag(:q, "from the restaurant: ") %>
     <%= options = options_from_collection_for_select(@restaurantList, 'id', 'name') %>
-<%= select_tag(:aname, options, :aname => params[:aname] ) %>
+<%= select_tag(:aname, options, :aname => params[:aname]) %>
     <%= submit_tag "Search" %>
-    <% @results = query_abd %>
+    <% :query_abd %>
 <% end %>
 
 <br>
 
+<!-- query ce -->
 <%= form_tag("/search", method: "get") do %>
     <%= label_tag(:q, "Search for:") %>
-    <%= select_tag(:name, options_for_select([['manager and opening date', 1],['average item price', 2]], 2)) %>
+    <%= select_tag(:cchoice, options_for_select([['manager and opening date', 1],['average item price', 2]], 2), :cchoice => params[:cchoice]) %>
     <%= label_tag(:q, "for the type: ") %>
     <% options = options_from_collection_for_select(@restaurantList, 'id', 'rtype') %>
-    <%= select_tag(:name, options) %>
-    <%= submit_tag("Search") %>
+    <%= select_tag(:ctype, options, :ctype => params[:ctype]) %>
+    <%= submit_tag "Search" %>
 <% end %>
 
 
@@ -78,38 +79,25 @@
 
 <br> <br>
 
-<!-- query f -->
-<%= form_tag("/search", method: "get") do %>
-<%= label_tag(:q, "Display rating distribution") %>
-<%= submit_tag("Display") %>
-<% end %>
-
-<br>
-
-<!-- query g -->
-<%= form_tag("/search", method: "get") do %>
-<%= label_tag(:q, "Restaurant details for unrated restaurants: ") %>
-<%= submit_tag("Search") %>
-<% end %>
-
-<br>
-
 <!-- query h -->
 <%= form_tag("/search", method: "get") do %>
-<%= label_tag(:q, "Restaurants with staff ratings below: ") %>
-<% options = options_from_collection_for_select(@raterList, 'id', 'name') %>
-<%= select_tag(:name, options) %>
-<%= submit_tag("Search") %>
+    <%= label_tag(:q, "Restaurants with staff ratings below: ") %>
+    <% options = options_from_collection_for_select(@raterList, 'id', 'rater_name') %>
+    <%= select_tag(:hchoice, options, :hchoice => params[:hchoice]) %>
+    <%= submit_tag "Search" %>
 <% end %>
 
 <br>
+
+<div class="field">
 <!-- query i -->
 <%= form_tag("/search", method: "get") do %>
-<%= label_tag(:q, "Search for highest rated restaurants of type: ") %>
-<%= options = options_from_collection_for_select(@restaurantList, 'id', 'rtype') %>
-<%= select_tag(:name, options) %>
-<%= submit_tag("Search") %>
+    <%= label_tag(:q, "Search for highest rated restaurants of type: ") %>
+    <%= options = options_from_collection_for_select(@restaurantList, 'id', 'rtype') %>
+    <%= select_tag(:itype, options, :itype => params[:itype]) %>
+    <%= submit_tag "Search" %>
 <% end %>
+</div
 
 <br>
 
@@ -122,22 +110,20 @@
 <%= submit_tag("Check") %>
 <% end %>
 
+
+<% @results = query_delegator %>
+
+
 <br> <br>
 
 <font size = "3" color="green"> Rater Queries </font>
 
 <br> <br>
 
-<!-- query k -->
-<%= form_tag("/search", method: "get") do %>
-<%= label_tag(:q, "Display best rater info") %>
-<%= submit_tag("Display") %>
-<% end %>
-<br>
 <!-- query l -->
 <%= form_tag("/search", method: "get") do %>
 <%= label_tag(:q, "Display best rater info in terms of: ") %>
-<%= select_tag(:name, options_for_select([['food', 1],['mood', 2]], 2)) %>
+<%= select_tag(:lchoice, options_for_select([['food', 1],['mood', 2]], 2), :lchoice => params[:lchoice]) %>
 <%= submit_tag("Display") %>
 <% end %>
 <br>
@@ -145,25 +131,34 @@
 <%= form_tag("/search", method: "get") do %>
 <%= label_tag(:q, "Display raters for the restaurant: ") %>
 <% options = options_from_collection_for_select(@restaurantList, 'id', 'name') %>
-<%= select_tag(:name, options) %>
+<%= select_tag(:mchoice, options, :mchoice => params[:mchoice]) %>
 <%= submit_tag("Display") %>
 <% end %>
 <br>
 <!-- query n -->
 <%= form_tag("/search", method: "get") do %>
 <%= label_tag(:q, "Raters with ratings below: ") %>
-<% options = options_from_collection_for_select(@raterList, 'id', 'name') %>
+<% options = options_from_collection_for_select(@raterList, 'id', 'rater_name') %>
 <%= select_tag(:name, options) %>
 <%= submit_tag("Search") %>
 <% end %>
-<br> 
-<!-- query o -->
-<%= form_tag("/search", method: "get") do %>
-<%= label_tag(:q, "Display diverse raters") %>
-<%= submit_tag("Display") %>
-<% end %>
+<br>
 
 <br>
+
+<font size = "3" color="orange""> Static Queries </font>
+
+<br> <br>
+
+<!-- query_fgko -->
+
+<%= form_tag("/search", method: "get") do %>
+<%= label_tag(:q, "Show: ") %>
+<%= select_tag(:fchoice, options_for_select([['rating distribution', 1],['details for unrated restaurants', 2],['best rater info', 3],['diverse raters', 4]], 4), :fchoice => params[:fchoice]) %>
+<%= submit_tag "Display" %>
+<% end %>
+
+<br> <br>
 
 <font size = "3" color="purple"> Results </font>
 

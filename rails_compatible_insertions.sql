@@ -196,3 +196,7 @@ INSERT INTO ratings VALUES (88, 7, '2015-03-30', 1, 1, 1, 1, '4/20 would not eat
 INSERT INTO ratings VALUES (89, 8, '2015-03-30', 1, 1, 1, 1, '4/20 would not eat again', 12, date '2015-04-12' + time '02:34:43.009829', date '2015-04-12' + time '02:34:43.009829');
 INSERT INTO ratings VALUES (90, 9, '2015-03-30', 1, 1, 1, 1, '4/20 would not eat again', 12, date '2015-04-12' + time '02:34:43.009829', date '2015-04-12' + time '02:34:43.009829');
 INSERT INTO ratings VALUES (91, 10, '2015-03-30', 1, 1, 1, 1, '4/20 would not eat again', 12, date '2015-04-12' + time '02:34:43.009829', date '2015-04-12' + time '02:34:43.009829');
+
+INSERT INTO rating_items VALUES (1, 6, '2014-05-02', 32, 5, 'Best soup I ever had!', date '2015-04-12' + time '02:34:43.009829', date '2015-04-12' + time '02:34:43.009829');
+INSERT INTO rating_items VALUES (2, 6, '2015-04-03', 33, 3, 'Pita plate is okay, Ive had better.', date '2015-04-12' + time '02:34:43.009829', date '2015-04-12' + time '02:34:43.009829');
+INSERT INTO rating_items VALUES (3, 6, '2015-04-04', 34, 3, 'Pretty average wrap.', date '2015-04-12' + time '02:34:43.009829', date '2015-04-12' + time '02:34:43.009829');

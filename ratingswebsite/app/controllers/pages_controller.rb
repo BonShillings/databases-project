@@ -1,5 +1,7 @@
 class PagesController < ActionController::Base
-    helper_method :query_abd
+    helper_method :query_delegator, :query_abd, :query_ce, :query_fgko, :query_i
+    
+    #TODO: Query f, j, o, n
     def search
         # data
         
@@ -35,7 +37,135 @@ class PagesController < ActionController::Base
             qSPart2 = "AND L.restaurant_id = R.id AND M.restaurant_id = R.id AND M.price = (SELECT max(M1.price) FROM menuitems M1 WHERE M1.restaurant_id = M.restaurant_id)"
             #result = ActiveRecord::Base.connection.execute("SELECT * FROM restaurants")
             result = ActiveRecord::Base.connection.execute(qSPart1 + "\'" + @restaurantName + "\'" + qSPart2)
+            if result != []
+                @results = result
+            end
         end
         return result
+    end
+    
+    def query_ce
+        result = []
+        if params[:ctype] != nil
+            restaurantNameResult = ActiveRecord::Base.connection.execute("SELECT rtype FROM restaurants WHERE id = " + params[:ctype])
+            restaurantNameResult.each do |restaurant|
+                @restaurantTypeCE = restaurant["rtype"]
+            end
+        end
+        if params[:cchoice] == "1"
+            qSPart1 = "SELECT L.manager_name, L.opening_date, R.name FROM locations L, restaurants R WHERE R.rtype = "
+            qSPart2 = " AND R.id= L.restaurant_id"
+            # result = ActiveRecord::Base.connection.execute("SELECT * FROM restaurants")
+            result = ActiveRecord::Base.connection.execute(qSPart1 + "\'" + @restaurantTypeCE + "\'" + qSPart2)
+        end
+        if params[:cchoice] == "2"
+            qSPart1 = "SELECT AVG(M.price), M.mcategory FROM menuitems M, restaurants R WHERE M.mcategory = \'starter\' AND R.id = M.restaurant_id AND R.rtype = "
+            qSPart2 = " GROUP BY M.mcategory UNION SELECT AVG(M1.price), M1.mcategory FROM menuitems M1, restaurants R1 WHERE M1.mcategory = 'main' AND R1.id = M1.restaurant_id AND R1.rtype = "
+            qSPart3 = " GROUP BY M1.mcategory UNION SELECT AVG(M2.price), M2.mcategory FROM menuitems M2, restaurants R2 WHERE M2.mcategory = \'desert\' AND R2.id = M2.restaurant_id AND R2.rtype = "
+            qSPart4 = " GROUP BY M2.mcategory"
+            # result = ActiveRecord::Base.connection.execute("SELECT * FROM menuitems")
+            rString = "\'" + @restaurantTypeCE + "\'"
+            result = ActiveRecord::Base.connection.execute(qSPart1 + rString + qSPart2 + rString + qSPart3 + rString + qSPart4)
+            if result != []
+                @results = result
+            end
+        end
+       return result
+    end
+    
+    # static queries
+    def query_fgko
+        result = []
+        if params[:fchoice] == "2"
+           #query_g details for unrated restaurants
+           result = ActiveRecord::Base.connection.execute("SELECT DISTINCT R.name, R.rtype, L.phone_number FROM restaurants R, locations L, ratings R1 WHERE L.restaurant_id = R.id AND R1.restaurant_id = R.id AND R.id NOT IN (SELECT R.id FROM restaurants R, ratings R1 WHERE (R1.date < \'2015-02-01\' AND R1.date > \'2014-12-31\') AND R1.restaurant_id = R.id)")
+        elsif params[:fchoice] == "3"
+            #query_k details for unrated restaurants
+            result = ActiveRecord::Base.connection.execute("SELECT DISTINCT R.rater_name, R.reputation, R.join_date, R2.name, R1.date FROM raters R, ratings R1, restaurants R2 WHERE R.id = R1.rater_id AND R1.restaurant_id = R2.id AND (R1.food + R1.mood) / 2 >= ( SELECT (MAX(R1.food) + MAX(R1.mood)) / 2 FROM raters R, ratings R1, restaurants R2 WHERE R1.restaurant_id = R2.id AND R1.rater_id = R.id )")
+        end
+        if result != []
+           @results = result
+        end
+        return result
+    end
+    
+    def query_h
+        qSPart1 = "SELECT DISTINCT R.name, L.opening_date FROM restaurants R, locations L, ratings R1, raters R2 WHERE R.id = L.restaurant_id AND R1.restaurant_id = R.id AND R1.staff < ( SELECT MIN(R.staff) FROM ratings R, raters R1 WHERE R.rater_id = R1.id AND R1.id = "
+        qSPart2 = ") AND R1.staff < (SELECT MIN(R.mood) FROM ratings R, raters R1 WHERE R.rater_id = R1.id AND R1.id = "
+        qSPart3 = ") AND R1.staff < (SELECT MIN(R.food) FROM ratings R, raters R1 WHERE R.rater_id = R1.id AND R1.id = "
+        qSPart4 = ") AND R1.staff < (SELECT MIN(R.price) FROM ratings R, raters R1 WHERE R.rater_id = R1.id AND R1.id = "
+        qSPart5 = ") ORDER BY L.opening_date"
+        result = ActiveRecord::Base.connection.execute(qSPart1 + params[:hchoice] + qSPart2 + params[:hchoice] + qSPart3 + params[:hchoice] + qSPart4 + params[:hchoice] + qSPart5 )
+        return result
+    end
+    
+    def query_i
+        result = []
+        if params[:itype] != nil
+            restaurantNameResult = ActiveRecord::Base.connection.execute("SELECT rtype FROM restaurants WHERE id = " + params[:itype])
+            restaurantNameResult.each do |restaurant|
+                @restaurantTypeI = restaurant["rtype"]
+            end
+            
+            qSPart1 = "SELECT DISTINCT R2.name, R.rater_name FROM raters R, ratings R1, restaurants R2 WHERE R2.rtype = "
+            qSPart2 = " AND R1.restaurant_id = R2.id AND R1.rater_id = R.id AND R1.food = ( SELECT MAX(R1.food) FROM raters R, ratings R1, restaurants R2 WHERE R2.rtype = "
+            qSPart3 = " AND R1.restaurant_id = R2.id AND R1.rater_id = R.id) ORDER BY R2.name"
+            rString = "\'" + @restaurantTypeI + "\'"
+            result = ActiveRecord::Base.connection.execute(qSPart1 + rString + qSPart2 + rString + qSPart3)
+            if result != []
+                @results = result
+            end
+        end
+        return result
+    end
+    
+    def query_l
+        result = []
+        if params[:lchoice] == "1"
+            result = ActiveRecord::Base.connection.execute("SELECT DISTINCT R.rater_name, R.reputation, R2.name, R1.date FROM raters R, ratings R1, restaurants R2 WHERE R.id = R1.rater_id AND R1.restaurant_id = R2.id AND (R1.food) >= (SELECT MAX(R1.food) FROM raters R, ratings R1, restaurants R2 WHERE R1.restaurant_id = R2.id AND R1.rater_id = R.id )")
+        elsif params[:lchoice] == "2"
+            result = ActiveRecord::Base.connection.execute("SELECT DISTINCT R.rater_name, R.reputation, R2.name, R1.date FROM raters R, ratings R1, restaurants R2 WHERE R.id = R1.rater_id AND R1.restaurant_id = R2.id AND (R1.mood) >= (SELECT MAX(R1.mood) FROM raters R, ratings R1, restaurants R2 WHERE R1.restaurant_id = R2.id AND R1.rater_id = R.id )")
+        end
+        return result
+    end
+    
+    def query_m
+        result = []
+        if params[:mchoice] != nil
+            restaurantNameResult = ActiveRecord::Base.connection.execute("SELECT name FROM restaurants WHERE id = " + params[:mchoice])
+            restaurantNameResult.each do |restaurant|
+                @restaurantMName = restaurant["name"]
+            end
+            
+            qSPart1 = "SELECT DISTINCT R.id, R.rater_name, R.reputation, R1.comments, M.name, M.price, R3.comment FROM raters R, ratings R1, restaurants R2, rating_items R3, menuitems M WHERE R1.rater_id = R.id AND R2.name = "
+            qSPart2 = " AND R1.restaurant_id = R2.id AND R3.rater_id = R.id AND R3.menuitem_id = M.id AND R3.date = R1.date AND R.id IN ( SELECT R1.rater_id FROM raters R, ratings R1, restaurants R2 WHERE R2.name = "
+            qSPart3 = " AND R1.restaurant_id = R2.id AND R1.rater_id = R.id GROUP BY R1.rater_id, R.reputation, R2.name HAVING COUNT(*) >= ALL ( SELECT COUNT(*) FROM ratings R1, restaurants R WHERE R.name = "
+            qSPart4 = " AND R1.restaurant_id = R.id GROUP BY R1.rater_id))"
+            rString = rString = "\'" + @restaurantMName + "\'"
+            result = ActiveRecord::Base.connection.execute(qSPart1 + rString + qSPart2 + rString + qSPart3 + rString + qSPart4)
+        end
+        return result
+        
+    end
+    
+    def query_delegator
+        result = []
+        if params[:aname] != nil
+            result = query_abd
+        elsif params[:ctype] != nil
+            result = query_ce
+        elsif params[:fchoice] != nil
+            result = query_fgko
+        elsif params[:hchoice] != nil
+            result = query_h
+        elsif params[:itype] != nil
+            result = query_i
+        elsif params[:lchoice] != nil
+            result = query_l
+        elsif params[:mchoice] != nil
+            result = query_m
+        end
+        return result
+        
     end
 end
