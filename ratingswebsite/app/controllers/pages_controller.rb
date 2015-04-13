@@ -1,7 +1,6 @@
 class PagesController < ActionController::Base
     helper_method :query_delegator, :query_abd, :query_ce, :query_fgko, :query_i
     
-    #TODO: Query f, j (is but isn't), n (is maybe), o
     def search
         # data
         
@@ -74,14 +73,24 @@ class PagesController < ActionController::Base
     end
     
     # static queries
-    def query_fgko
+    def query_fgkoj
         result = []
-        if params[:fchoice] == "2"
+        if params[:fchoice] == "1"
+            #query_f
+            result = ActiveRecord::Base.connection.execute("SELECT R.rater_name, R1.name, R2.price, R2.food, R2.mood, R2.staff FROM raters R, restaurants R1, ratings R2 WHERE R.id = R2.rater_id AND R1.id = R2.restaurant_id AND (R.id, R1.name) IN ( SELECT DISTINCT R.id, R2.name FROM raters R, ratings R1, restaurants R2  WHERE R.id = R1.rater_id AND R2.id = R1.restaurant_id GROUP BY R2.name, R.id)")
+        elsif params[:fchoice] == "2"
            #query_g details for unrated restaurants
            result = ActiveRecord::Base.connection.execute("SELECT DISTINCT R.name, R.rtype, L.phone_number FROM restaurants R, locations L, ratings R1 WHERE L.restaurant_id = R.id AND R1.restaurant_id = R.id AND R.id NOT IN (SELECT R.id FROM restaurants R, ratings R1 WHERE (R1.date < \'2015-02-01\' AND R1.date > \'2014-12-31\') AND R1.restaurant_id = R.id)")
         elsif params[:fchoice] == "3"
             #query_k details for unrated restaurants
-            result = ActiveRecord::Base.connection.execute("SELECT DISTINCT R.rater_name, R.reputation, R.join_date, R2.name, R1.date FROM raters R, ratings R1, restaurants R2 WHERE R.id = R1.rater_id AND R1.restaurant_id = R2.id AND (R1.food + R1.mood) / 2 >= ( SELECT (MAX(R1.food) + MAX(R1.mood)) / 2 FROM raters R, ratings R1, restaurants R2 WHERE R1.restaurant_id = R2.id AND R1.rater_id = R.id )")
+            result = ActiveRecord::Base.connection.execute("SELECT DISTINCT R.rater_name, R.reputation, R.join_date, R2.name, R1.date FROM raters R, ratings R1, restaurants R2 WHERE R.id = R1.rater_id AND R1.restaurant_id = R2.id AND (R1.food + R1.mood) / 2 >= ( SELECT (MAX(R1.food) + MAX(R1.mood)) / 2 FROM raters R, ratings R1, restaurants R2 WHERE R1.restaurant_id = R2.id AND R1.rater_id = R.id ) ORDER BY R.reputation DESC")
+        elsif params[:fchoice] == "4"
+            #query_o
+            result = ActiveRecord::Base.connection.execute("SELECT R.rater_name, R1.name, R2.price, R2.food, R2.mood, R2.staff FROM raters R, restaurants R1, ratings R2 WHERE R.id = R2.rater_id AND R1.id = R2.restaurant_id AND (R.id, R1.name) NOT IN (SELECT DISTINCT R.id, R2.name FROM raters R, ratings R1, restaurants R2 WHERE R.id = R1.rater_id AND R2.id = R1.restaurant_id GROUP BY R.id, R2.name HAVING MAX(R1.price) - MIN(R1.price) < 2 AND MAX(R1.food) - MIN(R1.food) < 2 AND MAX(R1.mood) - MIN(R1.MOOD) < 2 and MAX(R1.staff) - MIN(R1.staff) < 2 ORDER BY R2.name ) ORDER BY R.rater_name")
+        elsif params[:fchoice] == "5"
+            #query_j
+            result = ActiveRecord::Base.connection.execute("SELECT (AVG(R1.food) + AVG(R1.price) + AVG(R1.mood) + AVG(R1.staff)) / 4 AS average_rating, R2.rtype FROM raters R, ratings R1, restaurants R2 WHERE R1.restaurant_id = R2.id AND R1.rater_id = R.id GROUP BY R2.rtype ORDER BY average_rating;")
+        
         end
         if result != []
            @results = result
@@ -145,6 +154,21 @@ class PagesController < ActionController::Base
             result = ActiveRecord::Base.connection.execute(qSPart1 + rString + qSPart2 + rString + qSPart3 + rString + qSPart4)
         end
         return result
+    end
+    
+    def query_n
+        result = []
+        if params[:nrater] != nil
+            raterNameResult = ActiveRecord::Base.connection.execute("SELECT rater_name FROM raters WHERE id = " + params[:nrater])
+            raterNameResult.each do |rater|
+                @raterNameN = rater["rater_name"]
+            end
+        qSPart1 = "SELECT DISTINCT R.rater_name, R.email FROM raters R, ratings R1 WHERE R1.rater_id  = R.id AND (R1.food + R1.mood + R1.staff + R1.price) < ( SELECT MAX(R1.food + R1.mood + R1.staff + R1.price) FROM raters R, ratings R1 WHERE R.id = R1.rater_id AND R.rater_name = "
+        qSPart2 = ")"
+        rString = "\'" + @raterNameN + "\'"
+        result = ActiveRecord::Base.connection.execute(qSPart1 + rString + qSPart2)
+        end
+        return result
         
     end
     
@@ -155,7 +179,7 @@ class PagesController < ActionController::Base
         elsif params[:ctype] != nil
             result = query_ce
         elsif params[:fchoice] != nil
-            result = query_fgko
+            result = query_fgkoj
         elsif params[:hchoice] != nil
             result = query_h
         elsif params[:itype] != nil
@@ -164,6 +188,8 @@ class PagesController < ActionController::Base
             result = query_l
         elsif params[:mchoice] != nil
             result = query_m
+        elsif params[:nrater] != nil
+            result = query_n
         end
         return result
         
