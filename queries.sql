@@ -155,3 +155,18 @@ SELECT MAX(R1.food + R1.mood + R1.staff + R1.price)
 FROM rater R, rating R1
 WHERE R.userID = R1.userID AND R.name = 'John'
 );
+
+--o
+SELECT R.name, R1.name, R2.price, R2.food, R2.mood, R2.staff
+FROM rater R, restaurant R1, rating R2
+WHERE R.userID = R2.userID AND R1.restaurantID = R2.restaurantID AND (R.userID, R1.name) NOT IN
+(
+  --this query finds the users who have only rated a restaurant once or users who've rated a restaurant many times but the difference between
+  --the maximum and minimum value of a criteria (e.g, staff) differs but more than 1.
+  SELECT DISTINCT R.userID, R2.name
+  FROM rater R, rating R1, restaurant R2
+  WHERE R.userID = R1.userID AND R2.restaurantID = R1.restaurantID
+  GROUP BY R.userID, R2.name
+  HAVING MAX(R1.price) - MIN(R1.price) < 2 AND MAX(R1.food) - MIN(R1.food) < 2 AND MAX(R1.mood) - MIN(R1.MOOD) < 2 and MAX(R1.staff) - MIN(R1.staff) < 2
+  ORDER BY R2.name
+);
