@@ -127,9 +127,9 @@ WHERE R1.restaurantID = R2.restaurantID AND R1.userID = R.userID
 
 --m
 --replace 'The Albion Rooms' with the restaurant selected
-SELECT DISTINCT R.userID, R.reputation, R1.comments
-FROM rater R, rating R1, restaurant R2
-WHERE R1.userID = R.userID AND R2.name = 'The Albion Rooms' AND R1.restaurantID = R2.restaurantID AND R.userID IN 
+SELECT DISTINCT R.userID, R.reputation, R1.comments, M.name, M.price, R3.comment
+FROM rater R, rating R1, restaurant R2, ratingItem R3, menuItem M
+WHERE R1.userID = R.userID AND R2.name = 'The Albion Rooms' AND R1.restaurantID = R2.restaurantID AND R3.userID = R.userID AND R3.itemID = M.itemID AND R3.date = R1.date AND R.userID IN 
 (
 --this selects the rater with the most ratings for the restaurant 'The Albion Room'
 SELECT R1.userID
