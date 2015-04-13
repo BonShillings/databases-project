@@ -1,5 +1,22 @@
 -- alterations made to maintain rails coherence
 
+CREATE TABLE restaurants
+(
+id serial NOT NULL,
+name character varying,
+rtype character varying,
+url character varying,
+created_at timestamp without time zone NOT NULL,
+updated_at timestamp without time zone NOT NULL,
+CONSTRAINT restaurants_pkey PRIMARY KEY (id)
+)
+WITH (
+OIDS=FALSE
+);
+ALTER TABLE restaurants
+OWNER TO ratingswebsite;
+
+
 CREATE TABLE raters
 (
 id serial NOT NULL,
@@ -71,24 +88,6 @@ OIDS=FALSE
 );
 ALTER TABLE rating_items
 OWNER TO ratingswebsite;
-
-
-CREATE TABLE restaurants
-(
-id serial NOT NULL,
-name character varying,
-rtype character varying,
-url character varying,
-created_at timestamp without time zone NOT NULL,
-updated_at timestamp without time zone NOT NULL,
-CONSTRAINT restaurants_pkey PRIMARY KEY (id)
-)
-WITH (
-OIDS=FALSE
-);
-ALTER TABLE restaurants
-OWNER TO ratingswebsite;
-
 
 
 CREATE TABLE locations
