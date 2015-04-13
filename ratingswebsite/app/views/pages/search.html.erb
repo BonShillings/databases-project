@@ -57,7 +57,6 @@
     <%= options = options_from_collection_for_select(@restaurantList, 'id', 'name') %>
 <%= select_tag(:aname, options, :aname => params[:aname]) %>
     <%= submit_tag "Search" %>
-    <% :query_abd %>
 <% end %>
 
 <br>
@@ -111,9 +110,6 @@
 <% end %>
 
 
-<% @results = query_delegator %>
-
-
 <br> <br>
 
 <font size = "3" color="green"> Rater Queries </font>
@@ -154,11 +150,13 @@
 
 <%= form_tag("/search", method: "get") do %>
 <%= label_tag(:q, "Show: ") %>
-<%= select_tag(:fchoice, options_for_select([['rating distribution', 1],['details for unrated restaurants', 2],['best rater info', 3],['diverse raters', 4]], 4), :fchoice => params[:fchoice]) %>
+<%= select_tag(:fchoice, options_for_select([['rating distribution', 1],['details for restaurants not rated in january', 2],['best rater info', 3],['diverse raters', 4]], 4), :fchoice => params[:fchoice]) %>
 <%= submit_tag "Display" %>
 <% end %>
 
-<br> <br>
+<br>
+<% @results = query_delegator %>
+<br>
 
 <font size = "3" color="purple"> Results </font>
 

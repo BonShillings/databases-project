@@ -1,7 +1,7 @@
 class PagesController < ActionController::Base
     helper_method :query_delegator, :query_abd, :query_ce, :query_fgko, :query_i
     
-    #TODO: Query f, j, o, n
+    #TODO: Query f, j (is but isn't), n (is maybe), o
     def search
         # data
         
