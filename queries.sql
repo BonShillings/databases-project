@@ -47,6 +47,17 @@ FROM menuItem M2, restaurant R2
 WHERE M2.category = 'desert' AND R2.restaurantID = M2.restaurantID AND R2.type = 'Canadian'
 GROUP BY M2.category;
 
+--f
+SELECT R.name, R1.name, R2.price, R2.food, R2.mood, R2.staff
+FROM rater R, restaurant R1, rating R2
+WHERE R.userID = R2.userID AND R1.restaurantID = R2.restaurantID AND (R.userID, R1.name) IN
+(
+  SELECT DISTINCT R.userID, R2.name
+  FROM rater R, rating R1, restaurant R2
+  WHERE R.userID = R1.userID AND R2.restaurantID = R1.restaurantID
+  GROUP BY R2.name, R.userID
+);
+
 --g
 SELECT DISTINCT R.name, R.type, L.phone_number
 FROM restaurant R, location L, rating R1
