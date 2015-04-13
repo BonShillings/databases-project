@@ -144,3 +144,14 @@ HAVING COUNT(*) >= ALL
 	GROUP BY R1.userID
 	)
 );
+
+--n
+SELECT DISTINCT R.name, R.email 
+FROM rater R, rating R1
+WHERE R1.userID  = R.userID AND (R1.food + R1.mood + R1.staff + R1.price) <
+--this selects the highest overall rating by a rater whose name is 'John' 
+(
+SELECT MAX(R1.food + R1.mood + R1.staff + R1.price)
+FROM rater R, rating R1
+WHERE R.userID = R1.userID AND R.name = 'John'
+);
